@@ -1,35 +1,38 @@
-## Chapter 1: Introduction to the x86 architecture and about our OS
+## 1장: x86 아키텍처 소개와 우리가 만들 운영체제에 대하여
 
-### What is the x86 architecture?
+### **x86 아키텍처는 무엇인가요?**
 
-> The term x86 denotes a family of backward compatible instruction set architectures based on the Intel 8086 CPU.
+> x86은 Intel 8086 CPU를 기반으로 이들과 호환되는 프로세서들에서 사용한 명령어 집합 구조들을 통칭하는 말이다.
+>
+> 출처: [Wikipedia - x86](https://ko.wikipedia.org/wiki/X86)
 
-The x86 architecture is the most common instruction set architecture since its introduction in 1981 for the IBM PC. A large amount of software, including operating systems (OS's) such as DOS, Windows, Linux, BSD, Solaris and Mac OS X, function with x86-based hardware.
+x86은 1981년 IBM PC에 도입된 이후 가장 일반적인 명령어 집합 구조입니다. DOS, Windows, Linux, BSD, Solaris 그리고 Mac OS X와 같은 운영체제를 포함하여 많은 소프트웨어가 x86 기반의 하드웨어와 함께 작동합니다.
 
-In this course we are not going to design an operating system for the x86-64 architecture but for x86-32, thanks to backward compatibility, our OS will be compatible with our newer PCs (but take caution if you want to test it on your real machine).
+이 문서에서 우리는 x86-64 아키텍처가 아닌 x86-32 아키텍처를 운영체제를 디자인할 것입니다.
+이전 버전과의 호환성 덕분에, 우리가 만들 운영체제는 최신의 PC와 호환될 것입니다.. (하지만 실제 기기에 테스트하려고 한다면 주의를 요합니다)
 
-### Our Operating System
+### **우리가 만들 운영체제**
 
-The goal is to build a very simple UNIX-based operating system in C++, but the goal is not to just build a "proof-of-concept". The OS should be able to boot, start a userland shell and be extensible.
+C++를 사용하여 매우 간단한 유닉스 기반의 운영체제를 만드는 것이 목표입니다. 개념 증명이 목표가 아닙니다. 운영체제는 부팅이 가능할 것이며, 사용자 영역에서의 쉘이 시작되며 확장 가능할 것입니다.
 
-The OS will be built for the x86 architecture, running on 32 bits, and compatible with IBM PCs.
+운영체제는 x86 아키텍처로 만들어질 것이며, 32비트로 작동될 것입니다. 그리고 IBM PC에 호환될 것입니다.
 
-**Specifications:**
+**설계 명세서:**
 
-* Code in C++
-* x86, 32 bit architecture
-* Boot with Grub
-* Kind of modular system for drivers
-* Kind of UNIX style
-* Multitasking
-* ELF executable in userland
-* Modules (accessible in userland using /dev/...) :
-    * IDE disks
-    * DOS partitions
-    * Clock
-    * EXT2 (read only)
-    * Boch VBE
-* Userland :
-    * API Posix
-    * LibC
-    * "Can" run a shell or some executables (e.g., lua)
+ - C++로 작성된 코드
+ - x86 32비트 아키텍처
+ - Grub을 사용한 부팅
+ - 어느 정도의 모듈형 드라이버 시스템
+ - 어느 정도의 유닉스 스타일
+ - 멀티태스킹
+ - 사용자 영역에서의 [ELF](https://ko.wikipedia.org/wiki/ELF_%ED%8C%8C%EC%9D%BC_%ED%98%95%EC%8B%9D) 실행
+ - 모듈 (/dev/...를 사용하여 사용자 영역에서 접근 가능하게) :
+	 - IDE 디스크
+	 - DOS 파티션
+	 - 시계
+	 - EXT2 (읽기 전용)
+	 - Bochs VBE
+ - 사용자 영역 :
+	 - API Posix
+	 - LibC
+	 - 쉘 또는 일부 실행 파일의 실행이 가능하게 (예, lua)
