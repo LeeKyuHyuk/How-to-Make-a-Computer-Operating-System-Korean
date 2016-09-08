@@ -1,22 +1,17 @@
-How to Make a Computer Operating System
+How to Make a Computer Operating System 한국어
 =======================================
 
-Online book about how to write a computer operating system in C/C++ from scratch.
+이 문서는 C와 C++를 사용하여 운영체제를 어떻게 만드는지 기초부터 설명하고 있습니다.
 
-**Caution**: This repository is a remake of my old course. It was written several years ago [as one of my first projects when I was in High School](https://github.com/SamyPesse/devos), I'm still refactoring some parts. The original course was in French and I'm not an English native. I'm going to continue and improve this course in my free-time.
+**'[SamyPesse](https://github.com/SamyPesse)의 [How to Make a Computer Operating System in C++](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System)'**를 참고하여 작성되었습니다.
 
-**Book**: An online version is available at [http://samypesse.gitbooks.io/how-to-create-an-operating-system/](http://samypesse.gitbooks.io/how-to-create-an-operating-system/) (PDF, Mobi and ePub). It was generated using [GitBook](https://www.gitbook.com/).
+**소스 코드**: 모든 시스템 소스 코드는 [src](https://github.com/LeeKyuHyuk/How-to-Make-a-Computer-Operating-System-Korean/tree/master/src) 폴더에 있습니다. 각 단계는 다른 관련 파일에 대한 링크가 포함됩니다.
 
-**Source Code**: All the system source code will be stored in the [src](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/tree/master/src) directory. Each step will contain links to the different related files.
+**기여하기**: 이 강좌는 누구나 참여가 가능합니다. 강좌에 문제가 있다면 pull-request 해주시기 바랍니다.
 
-**Contributions**: This course is open to contributions, feel free to signal errors with issues or directly correct the errors with pull-requests.
+### 어떤 종류의 운영체제를 만들 건가요?
 
-**Questions**: Feel free to ask any questions by adding issues or commenting sections.
-
-You can follow me on Twitter [@SamyPesse](https://twitter.com/SamyPesse) or [GitHub](https://github.com/SamyPesse).
-
-### What kind of OS are we building?
-
-The goal is to build a very simple UNIX-based operating system in C++, not just a "proof-of-concept". The OS should be able to boot, start a userland shell, and be extensible.
+C++를 사용하여 매우 간단한 유닉스 기반의 운영체제를  만드는 것이 목표입니다. 개념 증명이 목표가 아닙니다.
+운영체제는 부팅이 가능할 것이며, 사용자 영역에서의 쉘이 시작되며 확장 가능할 것입니다.
 
 ![Screen](./preview.png)
