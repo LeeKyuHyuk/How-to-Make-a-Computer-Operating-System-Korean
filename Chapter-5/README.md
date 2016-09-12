@@ -1,18 +1,18 @@
-## Chapter 5: Base classes for managing x86 architecture
+## 5장: x86 아키텍처를 관리하기 위한 기본 클래스
 
-Now that we know how to compile our C++ kernel and boot the binary using GRUB, we can start to do some cool things in C/C++.
+이제 우리는 어떻게 C++로 짜인 커널을 컴파일하고, GRUB를 사용하여 바이너리를 부팅하는 방법을 알고 있습니다. 우리는 C/C++로 재밌는 작업을 시작할 수 있습니다.
 
-#### Printing to the screen console
+#### 콘솔 화면에 출력하기
 
-We are going to use VGA default mode (03h) to display some text to the user. The screen can be directly accessed using the video memory at 0xB8000. The screen resolution is 80x25 and each character on the screen is defined by 2 bytes: one for the character code, and one for the style flag. This means that the total size of the video memory is 4000B (80B*25B*2B).
+우리는 VGA 기본 모드 (03h)를 사용하여 사용자가 텍스트를 출력할 수 있게 할 것입니다. 화면은 비디오 메모리를 사용하여 0xB8000에 직접 접근할 수 있습니다. 화면의 해상도는 80x25이고 화면의 각 문자는 2바이트(하나의 문자 코드와 하나의 스타일 플래그)로 정의됩니다. 이것은 비디오 메모리의 전체 크기는 4000바이트(80바이트*25바이트*2바이트)라는 것을 의미합니다.
 
-In the IO class ([io.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc)),:
-* **x,y**: define the cursor position on the screen
-* **real_screen**: define the  video memory pointer
-* **putc(char c)**: print a unique character on the screen and manage cursor position
-* **printf(char* s, ...)**: print a string
+입출력 클래스 ([io.cc](https://github.com/LeeKyuHyuk/How-to-Make-a-Computer-Operating-System-Korean/blob/master/src/kernel/arch/x86/io.cc)),:
+* **x,y**: 화면의 커서 위치를 정의
+* **real_screen**: 비디오 메모리 포인터를 정의
+* **putc(char c)**: 문자를 화면에 출력하고 커서 위치를 관리
+* **printf(char* s, ...)**: 문자열 출력
 
-We add a method **putc** to the [IO Class](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc) to put a character on the screen and update the (x,y) position.
+우리는 화면에 문자를 출력하고 (x,y) 위치를 갱신하기 위해 **putc** 메서드를 [IO Class](https://github.com/LeeKyuHyuk/How-to-Make-a-Computer-Operating-System-Korean/blob/master/src/kernel/arch/x86/io.cc)에 추가해야 합니다.
 
 ```cpp
 /* put a byte on screen */
@@ -51,7 +51,7 @@ void Io::putc(char c){
 }
 ```
 
-We also add a useful and very known method: [printf](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc#L155)
+유용하고 자주 사용하는 메서드도 추가합니다: [printf](https://github.com/LeeKyuHyuk/How-to-Make-a-Computer-Operating-System-Korean/blob/master/src/kernel/arch/x86/io.cc#L154)
 
 ```cpp
 /* put a string in screen */
@@ -153,13 +153,13 @@ void Io::print(const char *s, ...){
 }
 ```
 
-#### Assembly interface
+#### 어셈블리 인터페이스
 
-A large number of instructions are available in Assembly but there is not equivalent in C (like cli, sti, in and out), so we need an interface to these instructions.
+어셈블리에는 많은 명령이 존재하지만 C(cli, sti, in, out 같은)와 일치하지 않습니다. 그래서 우리는 이 명령에 대한 인터페이스가 필요합니다.
 
-In C, we can include Assembly using the directive "asm()", gcc use gas to compile the assembly.
+C에서는 우리는 "asm()" 지시문을 사용하여 어셈블리를 포함할 수 있습니다. [GCC](https://en.wikipedia.org/wiki/GNU_Compiler_Collection)는 [GAS](https://en.wikipedia.org/wiki/GNU_Assembler)를 어셈블리 컴파일 할 때 사용합니다.
 
-**Caution:** gas uses the AT&T syntax.
+**주의:** GAS는 AT&T 문법을 사용합니다.
 
 ```cpp
 /* output byte */
